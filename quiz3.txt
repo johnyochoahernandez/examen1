@@ -1,3 +1,33 @@
 28 septiembre
 
 quiz 1
+
+
+create tablespace quiz3
+datafile '/quiz3/estudiante_quiz.dbf' size 50M,
+ '/quiz3/estudiante_quiz02.dbf' size 50M
+extent MANAGEMENT local AUTOALLOCATE;
+
+select * from dba_tablespaces;
+
+create profile estudiante_quiz limit
+sessions_per_user  5
+cpu_per_session unlimited
+connect_time  200;
+
+create user carlos_1
+identified by carlos_1
+default tablespace quiz3;
+
+alter user carlos_1
+identified BY carlos_1
+default tablespace quiz3
+password expire
+account unlock
+profile estudiante_quiz;
+
+grant create user to user1 with admin option;
+
+create user user2
+identified by user2
+default tablespace quiz3;
